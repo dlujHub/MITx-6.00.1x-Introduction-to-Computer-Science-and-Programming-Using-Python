@@ -1,34 +1,25 @@
-# Problem 3
-# 10/10 points (graded)
-# Numbers in Mandarin follow 3 simple rules.
+"""McDonald’s sells Chicken McNuggets in packages of 6, 9 or 20 McNuggets. Thus, it is possible, for example,
+to buy exactly 15 McNuggets (with one package of 6 and a second package of 9), but it is not possible to buy exactly
+16 McNuggets, since no non- negative integer combination of 6's, 9's and 20's add up to 16. To determine if it is
+possible to buy exactly n McNuggets, one has to find non-negative integer (can be 0) values of a, b, and c such that
 
-# There are words for each of the digits from 0 to 10.
-# For numbers 11-19, the number is pronounced as "ten digit", so for example, 16 would be pronounced (using Mandarin) as "ten six".
-# For numbers between 20 and 99, the number is pronounced as “digit ten digit”, so for example, 37 would be pronounced (using Mandarin) as
-# "three ten seven". If the digit is a zero, it is not included.
-# Here is a simple Python dictionary that captures the numbers between 0 and 10.
-trans = {'0':'ling', '1':'yi', '2':'er', '3':'san', '4': 'si', '5':'wu', '6':'liu', '7':'qi', '8':'ba', '9':'jiu', '10': 'shi'}
+Write a function, called McNuggets that takes one argument, n, and returns True if it is possible to buy a
+combination of 6, 9 and 20 pack units such that the total number of McNuggets equals n, and otherwise returns False.
+Hint: use a guess and check approach. """
 
-# We want to write a procedure that converts an American number (between 0 and 99), written as a string, into the equivalent Mandarin.
 
-# Example Usage
-# convert_to_mandarin('36') will return san shi liu
-# convert_to_mandarin('20') will return er shi
-# convert_to_mandarin('16') will return shi liu
+def McNuggets(n):
+    """
+    n is an int
 
-# Paste your function here
-def convert_to_mandarin(us_num):
-    '''
-    us_num, a string representing a US number 0 to 99
-    returns the string mandarin representation of us_num
-    '''
-    if int(us_num) <= 10:
-        return trans[us_num]
-    elif int(us_num) <= 19:
-        return 'shi ' + trans[us_num[1]]
-    elif int(us_num[1]) == 0:
-        return trans[us_num[0]] + ' shi'
-    else:
-        return trans[us_num[0]] + ' shi ' + trans[us_num[1]]
-        
+    Returns True if some integer combination of 6, 9 and 20 equals n
+    Otherwise returns False.
+    """
+    for a in range(n):
+        for b in range(n):
+            for c in range(n):
+                if 6 * a + 9 * b + 20 * c == n:
+                    return True
+    return False
+
 # Correct
