@@ -41,26 +41,26 @@ def longest_run(L):
 
     dec_count = 0
     inc_count = 0
-    maxcount = 0
+    max_count = 0
     result = 0
 
     for char in range(len(L) - 1):
-        if (L[char] <= L[char + 1]):
+        if L[char] <= L[char + 1]:
             dec_count += 1
-            if dec_count > maxcount:
-                maxcount = dec_count
+            if dec_count > max_count:
+                max_count = dec_count
                 result = char + 1
         else:
             dec_count = 0
-        if (L[char] >= L[char + 1]):
+        if L[char] >= L[char + 1]:
             inc_count += 1            
-            if inc_count > maxcount:
-                maxcount = inc_count
+            if inc_count > max_count:
+                max_count = inc_count
                 result = char + 1
         else:
             inc_count = 0
         
-    startposition = result - maxcount
+    startposition = result - max_count
     return sum(L[startposition:result + 1])
     
 # Correct
